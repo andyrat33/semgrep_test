@@ -1,0 +1,1 @@
+{"rules":[{"id":"insecure_crypto1","languages":["python"],"message":"Outdated Crypto maybe insecure.\n","metadata":{"dev.semgrep.actions":[],"semgrep.policy":{"id":3600,"name":"test_rules","slug":"test-rules"},"semgrep.url":"https://semgrep.dev/s/B4x9"},"pattern":"cryptography.hazmat.primitives.hashes.MD5(...)\n","severity":"WARNING"}]}
