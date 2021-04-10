@@ -12,3 +12,4 @@ hashes.SHA256()
 # ok:insecure-hash-algorithm-sha1
 # ok:insecure-hash-algorithm-md5
 hashes.SHA3_256()
+hashes.MD5()
