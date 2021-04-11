@@ -17,4 +17,7 @@ docker run -v $(pwd):/src --workdir /src returntocorp/semgrep-agent:v1 python -m
     }
 
   }
+  environment {
+    SEMGREP_COMMIT = '$COMMIT'
+  }
 }
