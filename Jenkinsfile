@@ -11,7 +11,7 @@ pipeline {
         environment {
             SEMGREP_COMMIT = "${env.GIT_COMMIT}"
             SEMGREP_REPO_NAME = "andyrat33/semgrep_test"
-            SEMGREP_REPO_URL = https://github.com/andyrat33/semgrep_test
+            SEMGREP_REPO_URL = "https://github.com/andyrat33/semgrep_test"
         }
         steps {
             sh '''echo "Semgrep Testing..."
