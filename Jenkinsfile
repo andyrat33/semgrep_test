@@ -12,6 +12,7 @@ pipeline {
             SEMGREP_COMMIT = "${env.GIT_COMMIT}"
             SEMGREP_REPO_NAME = "andyrat33/semgrep_test"
             SEMGREP_REPO_URL = "${env.GIT_URL}"
+            SEMGREP_JOB_URL = "${env.JOB_DISPLAY_URL}" # URL to CI logs
         }
         steps {
             sh '''echo "Semgrep Testing..."
