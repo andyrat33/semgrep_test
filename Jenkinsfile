@@ -10,7 +10,6 @@ pipeline {
     stage('Test') {
       steps {
         sh '''echo "Semgrep Testing..."
-        echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
         ls -la
         printenv
         docker run -v $(pwd):/src --workdir /src returntocorp/semgrep-agent:v1 python -m semgrep_agent --config s/andyrat33:unsafe-crypto
