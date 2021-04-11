@@ -9,7 +9,7 @@ pipeline {
 
     stage('Test') {
         environment {
-            SEMGREP_COMMIT = ${GIT_COMMIT}
+            SEMGREP_COMMIT = ${env.GIT_COMMIT}
         }
         steps {
             sh '''echo "Semgrep Testing..."
