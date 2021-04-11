@@ -15,12 +15,11 @@ pipeline {
         docker run -v $(pwd):/src --workdir /src returntocorp/semgrep-agent:v1 python -m semgrep_agent --config s/andyrat33:unsafe-crypto
 
         '''
-
       }
     }
 
   }
   environment {
-    SEMGREP_COMMIT = '$COMMIT'
+    SEMGREP_COMMIT = '${GIT_COMMIT}'
   }
 }
