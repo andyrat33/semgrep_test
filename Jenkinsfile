@@ -18,4 +18,7 @@ sh 'printenv'
     }
 
   }
+  environment {
+    SEMGREP_COMMIT = '$COMMIT'
+  }
 }
