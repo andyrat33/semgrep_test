@@ -14,7 +14,7 @@ pipeline {
             SEMGREP_REPO_URL = "${env.GIT_URL}"
             SEMGREP_JOB_URL = "${env.JOB_DISPLAY_URL}"
             SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
-            SEMGREP_BRANCH=mybranch
+            SEMGREP_BRANCH = "${env.BRANCH_NAME}"
             BASELINE_REF = "{env.GIT_PREVIOUS_COMMIT}"
         }
         steps {
