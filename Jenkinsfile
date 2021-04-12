@@ -16,7 +16,6 @@ pipeline {
             SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
             SEMGREP_BRANCH = "${env.BRANCH_NAME}"
             BASELINE_REF = "${env.GIT_PREVIOUS_COMMIT}"
-            SEMGREP_PR_ID = "123"
             SEMGREP_PR_TITLE = "Test"
         }
         steps {
