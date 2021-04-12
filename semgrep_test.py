@@ -5,14 +5,14 @@ from cryptography.hazmat.primitives import hashes
 # ruleid:insecure-hash-algorithm-md5
 hashes.SHA1()
 # ruleid:insecure-hash-algorithm-sha1
-hashes.SHA1()
+hashes.MD5()
 # ok:insecure-hash-algorithm-sha1
 # ok:insecure-hash-algorithm-md5
 hashes.SHA256()
 # ok:insecure-hash-algorithm-sha1
 # ok:insecure-hash-algorithm-md5
 hashes.SHA3_256()
-digest = hashes.Hash(hashes.SHA256())
+digest = hashes.Hash(hashes.MD5())
 digest.update(b"abcdefg")
 product = digest.finalize()
 print(product.hex())
