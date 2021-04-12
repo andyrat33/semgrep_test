@@ -13,13 +13,20 @@ pipeline {
             SEMGREP_REPO_NAME = "andyrat33/semgrep_test"
             SEMGREP_REPO_URL = "${env.GIT_URL}"
             SEMGREP_JOB_URL = "${env.JOB_DISPLAY_URL}"
+            SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
+            SEMGREP_BRANCH=mybranch
+            BASELINE-REF = "{env.GIT_PREVIOUS_COMMIT}"
         }
         steps {
             sh '''echo "Semgrep Testing..."
             echo "COMMIT ID ${GIT_COMMIT}"
             ls -la
             printenv
-            docker run -v $(pwd):/src --workdir /src returntocorp/semgrep-agent:v1 python -m semgrep_agent --config s/andyrat33:unsafe-crypto
+            docker run -v $(pwd):/src --workdir /src returntocorp/semgrep-agent:v1 \
+            python -m semgrep_agent --config s/andyrat33:unsafe-crypto \
+            --publish-deployment 63 \
+            --publish-token $SEMGREP_APP_TOKEN \
+            --baseline-ref $BASELINE-REF
 
             '''
         }
