@@ -15,7 +15,7 @@ pipeline {
             SEMGREP_JOB_URL = "${env.JOB_DISPLAY_URL}"
             SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
             SEMGREP_BRANCH=mybranch
-            BASELINE-REF = "{env.GIT_PREVIOUS_COMMIT}"
+            BASELINE_REF = "{env.GIT_PREVIOUS_COMMIT}"
         }
         steps {
             sh '''echo "Semgrep Testing..."
@@ -26,7 +26,7 @@ pipeline {
             python -m semgrep_agent --config s/andyrat33:unsafe-crypto \
             --publish-deployment 63 \
             --publish-token $SEMGREP_APP_TOKEN \
-            --baseline-ref $BASELINE-REF
+            --baseline-ref $BASELINE_REF
 
             '''
         }
