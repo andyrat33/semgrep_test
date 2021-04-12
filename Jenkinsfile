@@ -15,7 +15,7 @@ pipeline {
             SEMGREP_JOB_URL = "${env.JOB_DISPLAY_URL}"
             SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
             SEMGREP_BRANCH = "${env.BRANCH_NAME}"
-            BASELINE_REF = "{env.GIT_PREVIOUS_COMMIT}"
+            BASELINE_REF = "${env.GIT_PREVIOUS_COMMIT}"
         }
         steps {
             sh '''echo "Semgrep Testing..."
