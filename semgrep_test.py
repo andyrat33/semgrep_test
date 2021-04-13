@@ -1,7 +1,7 @@
 from cryptography.hazmat.primitives import hashes
 
 
-digest = hashes.Hash(hashes.SHA256())
+digest = hashes.Hash(hashes.MD5())
 digest.update(b"abcdefg")
 product = digest.finalize()
 print(product.hex())
@@ -19,6 +19,4 @@ print(fileProduct.hex())
 # 298b5f666156316f802ea35fb2ee887d
 # md5 test.txt
 # MD5 (test.txt) = 298b5f666156316f802ea35fb2ee887d
-hashes.MD5()
-hashes.SHA256()
-hashes.SHA1()
+
