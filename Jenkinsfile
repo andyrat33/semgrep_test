@@ -22,8 +22,8 @@ pipeline {
             docker run -v $(pwd):/src --workdir /src returntocorp/semgrep-agent:v1 \
             python -m semgrep_agent --config "p/r2c-ci" \
             --publish-deployment 63 \
-            --publish-token $SEMGREP_APP_TOKEN \
-            --baseline-ref $BASELINE_REF
+            --publish-token $SEMGREP_APP_TOKEN
+
 
             '''
         }
