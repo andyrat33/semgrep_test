@@ -1,19 +1,13 @@
 from cryptography.hazmat.primitives import hashes
 
 
-hashes.SHA1()
-
-hashes.SHA256()
-
-hashes.SHA3_256()
-
-digest = hashes.Hash(hashes.SHA1())
+digest = hashes.Hash(hashes.MD5())
 digest.update(b"abcdefg")
 product = digest.finalize()
 print(product.hex())
 # echo -n "abcdefg" | md5
 # 7ac66c0f148de9519b8bd264312c4d64
-fileDigest = hashes.Hash(hashes.SHA1())
+fileDigest = hashes.Hash(hashes.MD5())
 
 with open("test.txt", 'rb') as reader:
     # Read and add line to fileDigest
