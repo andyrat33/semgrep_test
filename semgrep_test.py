@@ -1,3 +1,6 @@
+import os
+from cryptography.hazmat import backends
+from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.primitives import hashes
 
 
@@ -19,8 +22,10 @@ print(fileProduct.hex())
 # 298b5f666156316f802ea35fb2ee887d
 # md5 test.txt
 # MD5 (test.txt) = 298b5f666156316f802ea35fb2ee887d
+ec.generate_private_key(curve=ec.SECP192R1, backend=backends.default_backend())
+
+# ruleid: insufficient-ec-key-size
+ec.generate_private_key(ec.SECT163K1, backends.default_backend())
 
 print("Test hash algorithm MD5 is weak")
 print("Done")
-if 1 == 1:
-    pass
