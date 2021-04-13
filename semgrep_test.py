@@ -20,4 +20,4 @@ print(fileProduct.hex())
 # md5 test.txt
 # MD5 (test.txt) = 298b5f666156316f802ea35fb2ee887d
 
-print("Test hash algorithm")
+print("Test hash algorithm MD5 is weak")
