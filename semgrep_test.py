@@ -7,7 +7,7 @@ product = digest.finalize()
 print(product.hex())
 # echo -n "abcdefg" | md5
 # 7ac66c0f148de9519b8bd264312c4d64
-fileDigest = hashes.Hash(hashes.SHA1())
+fileDigest = hashes.Hash(hashes.MD5())
 
 with open("test.txt", 'rb') as reader:
     # Read and add line to fileDigest
@@ -21,3 +21,4 @@ print(fileProduct.hex())
 # MD5 (test.txt) = 298b5f666156316f802ea35fb2ee887d
 hashes.MD5()
 hashes.SHA256()
+hashes.MD5()

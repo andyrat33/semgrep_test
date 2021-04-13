@@ -20,7 +20,7 @@ pipeline {
         steps {
             sh '''echo "Semgrep Testing..."
             docker run -v $(pwd):/src --workdir /src returntocorp/semgrep-agent:v1 \
-            python -m semgrep_agent --config s/andyrat33:unsafe-crypto \
+            python -m semgrep_agent --config "p/r2c-ci" \
             --publish-deployment 63 \
             --publish-token $SEMGREP_APP_TOKEN \
             --baseline-ref $BASELINE_REF
