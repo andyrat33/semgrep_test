@@ -22,3 +22,5 @@ print(fileProduct.hex())
 
 print("Test hash algorithm MD5 is weak")
 print("Done")
+if 1 == 1:
+    pass
