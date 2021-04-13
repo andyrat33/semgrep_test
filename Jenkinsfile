@@ -22,7 +22,7 @@ pipeline {
             docker run -v $(pwd):/src --workdir /src returntocorp/semgrep-agent:v1 \
             python -m semgrep_agent --config s/andyrat33:unsafe-crypto \
             --publish-deployment 63 \
-            --publish-token $SEMGREP_APP_TOKEN
+            --publish-token $SEMGREP_APP_TOKEN \
             --baseline-ref $SEMGREP_BRANCH
 
             '''
