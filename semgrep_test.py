@@ -1,4 +1,3 @@
-import os
 from cryptography.hazmat import backends
 from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.primitives import hashes
