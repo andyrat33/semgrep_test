@@ -21,4 +21,4 @@ print(fileProduct.hex())
 # MD5 (test.txt) = 298b5f666156316f802ea35fb2ee887d
 hashes.MD5()
 hashes.SHA256()
-hashes.MD5()
+hashes.SHA1()
