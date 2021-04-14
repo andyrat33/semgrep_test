@@ -26,6 +26,14 @@ ec.generate_private_key(curve=ec.SECP256K1, backend=backends.default_backend())
 # SECP192R1 & SECT163K1 Bad
 # ruleid: insufficient-ec-key-size
 ec.generate_private_key(ec.SECP256K1, backends.default_backend())
+fileDigest2 = hashes.Hash(hashes.MD5())
+with open("test.txt", 'rb') as reader:
+    # Read and add line to fileDigest
+    for line in reader:
+        fileDigest2.update(line)
+
+fileProduct2 = fileDigest2.finalize()
+print(fileProduct2.hex())
 
 print("Test hash algorithm MD5 is weak")
 print("Done")
