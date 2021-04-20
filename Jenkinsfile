@@ -10,11 +10,11 @@ pipeline {
     stage('Test') {
         environment {
             SEMGREP_COMMIT = "${env.GIT_COMMIT}"
-            SEMGREP_REPO_NAME = "andyrat33/semgrep_test"
-            SEMGREP_REPO_URL = "${env.GIT_URL}"
-            SEMGREP_JOB_URL = "${env.JOB_DISPLAY_URL}"
+            SEMGREP_REPO_NAME = env.GIT_URL.replaceFirst(/^https:\/\/github.com\/(.*).git$/, '$1')
+            SEMGREP_REPO_URL = env.GIT_URL.replaceFirst(/^(.*).git$/,'$1')
+            SEMGREP_JOB_URL = "${BUILD_URL}"
             SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
-            SEMGREP_BRANCH = "${env.BRANCH_NAME}"
+            SEMGREP_BRANCH = "${GIT_BRANCH}"
             BASELINE_REF = "${env.GIT_PREVIOUS_COMMIT}"
         }
         steps {
@@ -28,6 +28,10 @@ pipeline {
             '''
         }
        }
+       post {
+        always {
+            junit 'build/reports/**/*.xml'
+        }
   }
 
 }
