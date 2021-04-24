@@ -25,8 +25,9 @@ pipeline {
             SEMGREP_BRANCH = "${GIT_BRANCH}"
             BASELINE_REF = "${env.GIT_PREVIOUS_COMMIT}"
         }
-        steps {
-            stage('Semgrep_agent') {
+
+    stage('Semgrep_agent') {
+        steps{
         sh 'python -m semgrep_agent --publish-token $SEMGREP_APP_TOKEN --publish-deployment $SEMGREP_DEPLOYMENT_ID'
       }
    }
