@@ -5,7 +5,7 @@ pipeline {
       // This file is tested with semgrep 0.39.1 on Python 3.9.1
       // For the latest agent, use 'docker pull returntocorp/semgrep-agent:v1'
       image 'returntocorp/semgrep-agent:v1'
-      args '-v $(pwd):/src --workdir /src'
+      args '-u root'
         }
   }
   stages {
@@ -29,6 +29,7 @@ pipeline {
 
         steps{
         sh 'python -m semgrep_agent --config "p/r2c-ci" --publish-token $SEMGREP_APP_TOKEN --publish-deployment $SEMGREP_DEPLOYMENT_ID'
+        sh 'ls -la'
       }
    }
   }
