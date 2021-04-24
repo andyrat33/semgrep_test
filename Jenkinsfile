@@ -22,6 +22,7 @@ pipeline {
             SEMGREP_REPO_URL = env.GIT_URL.replaceFirst(/^(.*).git$/,'$1')
             SEMGREP_JOB_URL = "${BUILD_URL}"
             SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
+            SEMGREP_DEPLOYMENT_ID = credentials('SEMGREP_DEPLOYMENT_ID')
             SEMGREP_BRANCH = "${GIT_BRANCH}"
             BASELINE_REF = "${env.GIT_PREVIOUS_COMMIT}"
         }
