@@ -37,3 +37,11 @@ print(fileProduct2.hex())
 
 print("Test hash algorithm MD5 is weak")
 print("Done")
+fileDigest3 = hashes.Hash(hashes.MD5())
+with open("test.txt", 'rb') as reader:
+    # Read and add line to fileDigest
+    for line in reader:
+        fileDigest3.update(line)
+
+fileProduct3 = fileDigest3.finalize()
+print(fileProduct3.hex())
