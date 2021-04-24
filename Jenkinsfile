@@ -15,7 +15,7 @@ pipeline {
         }
     }
 
-    stage('Test') {
+    stage('Semgrep_agent') {
         environment {
             SEMGREP_COMMIT = "${env.GIT_COMMIT}"
             SEMGREP_REPO_NAME = env.GIT_URL.replaceFirst(/^https:\/\/github.com\/(.*).git$/, '$1')
@@ -26,7 +26,6 @@ pipeline {
             BASELINE_REF = "${env.GIT_PREVIOUS_COMMIT}"
         }
 
-    stage('Semgrep_agent') {
         steps{
         sh 'python -m semgrep_agent --publish-token $SEMGREP_APP_TOKEN --publish-deployment $SEMGREP_DEPLOYMENT_ID'
       }
