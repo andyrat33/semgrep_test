@@ -28,7 +28,7 @@ pipeline {
         }
 
         steps{
-        sh 'python -m semgrep_agent --config s/andyrat33:unsafe-crypto --publish-token $SEMGREP_APP_TOKEN --publish-deployment $SEMGREP_DEPLOYMENT_ID'
+        sh 'python -m semgrep_agent --config "p/r2c-ci" --publish-token $SEMGREP_APP_TOKEN --publish-deployment $SEMGREP_DEPLOYMENT_ID'
       }
    }
   }
