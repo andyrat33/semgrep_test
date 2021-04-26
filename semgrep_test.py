@@ -2,6 +2,7 @@ from cryptography.hazmat import backends
 from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.primitives import hashes
 
+FILENAME = "test.txt"
 
 digest = hashes.Hash(hashes.SHA256())
 digest.update(b"abcdefg")
@@ -11,7 +12,7 @@ print(product.hex())
 # 7ac66c0f148de9519b8bd264312c4d64
 fileDigest = hashes.Hash(hashes.SHA256())
 
-with open("test.txt", 'rb') as reader:
+with open(FILENAME, 'rb') as reader:
     # Read and add line to fileDigest
     for line in reader:
         fileDigest.update(line)
@@ -27,7 +28,7 @@ ec.generate_private_key(curve=ec.SECP256K1, backend=backends.default_backend())
 # ruleid: insufficient-ec-key-size
 ec.generate_private_key(ec.SECP256K1, backends.default_backend())
 fileDigest2 = hashes.Hash(hashes.MD5())
-with open("test.txt", 'rb') as reader:
+with open(FILENAME, 'rb') as reader:
     # Read and add line to fileDigest
     for line in reader:
         fileDigest2.update(line)
@@ -38,7 +39,7 @@ print(fileProduct2.hex())
 print("Test hash algorithm MD5 is weak")
 print("Done")
 fileDigest3 = hashes.Hash(hashes.MD5())
-with open("test.txt", 'rb') as reader:
+with open(FILENAME, 'rb') as reader:
     # Read and add line to fileDigest
     for line in reader:
         fileDigest3.update(line)
