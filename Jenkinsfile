@@ -32,7 +32,8 @@ pipeline {
 
         stage('Dependency-Check') {
           steps {
-            dependencyCheck(odcInstallation: 'dependency-check')
+            sh '''/var/lib/jenkins/tools/org.jenkinsci.plugins.DependencyCheck.tools.DependencyCheckInstallation/dependency-check/dependency-check/bin/dependency-check.sh --scan $WORKSPACE 
+'''
           }
         }
 
