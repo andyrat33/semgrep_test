@@ -33,6 +33,7 @@ pipeline {
         stage('Dependency-Check') {
           steps {
             sh '''/var/lib/jenkins/tools/org.jenkinsci.plugins.DependencyCheck.tools.DependencyCheckInstallation/dependency-check/dependency-check/bin/dependency-check.sh --scan $WORKSPACE 
+            echo $(pwd)
 '''
           }
         }
