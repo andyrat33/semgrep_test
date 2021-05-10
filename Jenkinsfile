@@ -30,7 +30,7 @@ pipeline {
 
     stage('Dependency-Check') {
       steps {
-        dependencyCheck(odcInstallation: '\'dependency-check\'')
+        dependencyCheck(odcInstallation: 'dependency-check', additionalArguments: '--scan $WORKSPACE')
       }
     }
 
