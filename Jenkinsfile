@@ -12,9 +12,10 @@ pipeline {
     stage('Semgrep_agent') {
       agent {
         docker {
-            image 'returntocorp/semgrep-agent:v1'
-            args '-u root'
+          image 'returntocorp/semgrep-agent:v1'
+          args '-u root'
         }
+
       }
       environment {
         SEMGREP_COMMIT = "${env.GIT_COMMIT}"
@@ -33,6 +34,12 @@ pipeline {
     stage('Dependency Checks') {
       steps {
         dependencyCheck(odcInstallation: 'dependency-check', additionalArguments: "--scan ${env.WORKSPACE}")
+      }
+    }
+
+    stage('Dependency-track') {
+      steps {
+        dependencyTrackPublisher(artifact: 'bom.xml', synchronous: true, autoCreateProjects: true, dependencyTrackApiKey: 'Dependency-Track-Automation', projectName: 'semgrep-test', projectVersion: '1')
       }
     }
 
