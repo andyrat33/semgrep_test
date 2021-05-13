@@ -4,7 +4,6 @@ pipeline {
     stage('Build') {
       steps {
         sh '''echo "Building..."
-        printenv
         #!/bin/sh
         VENV='venv'
         python3 -m venv $VENV
@@ -46,7 +45,7 @@ pipeline {
 
     stage('Dependency-track') {
       steps {
-        dependencyTrackPublisher(artifact: 'bom.xml', synchronous: true, autoCreateProjects: true, dependencyTrackApiKey: 'Dependency-Track-Automation', projectName: 'semgrep-test', projectVersion: '1')
+        dependencyTrackPublisher(artifact: 'bom.xml', synchronous: true, autoCreateProjects: true, dependencyTrackApiKey: credentials('Dependency-Track-Automation'), projectName: 'semgrep-test', projectVersion: '1')
       }
     }
 
