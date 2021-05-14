@@ -43,7 +43,7 @@ pipeline {
         dependencyCheckPublisher(pattern: '**/dependency-check-report.xml')
       }
     }
-    stage('Dependency-track') {
+    stage('Dependency Track') {
     environment {
         DC_CREDS = credentials('Dependency-Track-Automation')
       }
