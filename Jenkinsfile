@@ -38,17 +38,17 @@ pipeline {
     }
 
     stage('Dependency Checks') {
-      environment {
-        DC_CREDS = credentials('Dependency-Track-Automation')
-      }
       steps {
         dependencyCheck(odcInstallation: 'dependency-check', additionalArguments: "--scan ${env.WORKSPACE}")
         dependencyCheckPublisher(pattern: '**/dependency-check-report.xml')
       }
     }
     stage('Dependency-track') {
+    environment {
+        DC_CREDS = credentials('Dependency-Track-Automation')
+      }
       steps {
-        dependencyTrackPublisher(artifact: 'bom.xml', synchronous: 'true', autoCreateProjects: 'true', dependencyTrackApiKey: "credentials('Dependency-Track-Automation')", projectName: 'semgrep-test', projectVersion: '1')
+        dependencyTrackPublisher(artifact: 'bom.xml', synchronous: 'true', autoCreateProjects: 'true', dependencyTrackApiKey: "${env.DC_CREDS}", projectName: 'semgrep-test', projectVersion: '1')
       }
     }
 
