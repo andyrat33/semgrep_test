@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh '''echo "Building..."
         #!/bin/sh
-        VENV='venv'
+        VENV=\'venv\'
         python3 -m venv $VENV
         . $VENV/bin/activate
         pip3 install -r requirements.txt
@@ -44,8 +44,19 @@ pipeline {
     }
 
     stage('Dependency-track') {
-      steps {
-        dependencyTrackPublisher(artifact: 'bom.xml', synchronous: true, autoCreateProjects: true, dependencyTrackApiKey: 'Dependency-Track-Automation', projectName: 'semgrep-test', projectVersion: '1')
+      parallel {
+        stage('Dependency-track') {
+          steps {
+            dependencyTrackPublisher(artifact: 'bom.xml', synchronous: true, autoCreateProjects: true, dependencyTrackApiKey: 'Dependency-Track-Automation', projectName: 'semgrep-test', projectVersion: '1')
+          }
+        }
+
+        stage('DC Publish') {
+          steps {
+            dependencyCheckPublisher()
+          }
+        }
+
       }
     }
 
