@@ -20,9 +20,9 @@ pipeline {
         docker {
           image 'returntocorp/semgrep-agent:v1'
           args '-u root'
+          }
         }
 
-      }
       environment {
         SEMGREP_COMMIT = "${env.GIT_COMMIT}"
         SEMGREP_REPO_NAME = env.GIT_URL.replaceFirst(/^https:\/\/github.com\/(.*).git$/, '$1')
@@ -45,7 +45,6 @@ pipeline {
         dependencyCheck(odcInstallation: 'dependency-check', additionalArguments: "--scan ${env.WORKSPACE}")
       }
     }
-
     stage('Dependency-track') {
       steps {
         dependencyTrackPublisher(artifact: 'bom.xml', synchronous: true, autoCreateProjects: true, dependencyTrackApiKey: $DC_CRED , projectName: 'semgrep-test', projectVersion: '1')
