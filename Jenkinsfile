@@ -48,7 +48,7 @@ pipeline {
 
     stage('Dependency-track') {
       steps {
-        dependencyTrackPublisher(artifact: 'bom.xml', synchronous: true, autoCreateProjects: true, dependencyTrackApiKey: , projectName: 'semgrep-test', projectVersion: '1')
+        dependencyTrackPublisher(artifact: 'bom.xml', synchronous: true, autoCreateProjects: true, dependencyTrackApiKey: $DC_CRED , projectName: 'semgrep-test', projectVersion: '1')
       }
     }
 
