@@ -54,7 +54,7 @@ pipeline {
 
     stage('DC Publish') {
       steps {
-        dependencyCheckPublisher(pattern: '**/dependency-check-report.xml', allowEmptyArchive: true, artifacts: '**/dependency-check-report.html', onlyIfSuccessful: true)
+        dependencyCheckPublisher(pattern: '**/dependency-check-report.xml')
       }
     }
 
