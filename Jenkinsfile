@@ -44,19 +44,14 @@ pipeline {
     }
 
     stage('Dependency-track') {
-      parallel {
-        stage('Dependency-track') {
-          steps {
-            dependencyTrackPublisher(artifact: 'bom.xml', synchronous: true, autoCreateProjects: true, dependencyTrackApiKey: 'Dependency-Track-Automation', projectName: 'semgrep-test', projectVersion: '1')
-          }
-        }
+      steps {
+        dependencyTrackPublisher(artifact: 'bom.xml', synchronous: true, autoCreateProjects: true, dependencyTrackApiKey: 'Dependency-Track-Automation', projectName: 'semgrep-test', projectVersion: '1')
+      }
+    }
 
-        stage('DC Publish') {
-          steps {
-            dependencyCheckPublisher()
-          }
-        }
-
+    stage('DC Publish') {
+      steps {
+        dependencyCheckPublisher(pattern: '**/dependency-check-report.xml')
       }
     }
 
