@@ -48,7 +48,7 @@ pipeline {
         DC_CREDS = credentials('Dependency-Track-Automation')
       }
       steps {
-        dependencyTrackPublisher(artifact: 'bom.xml', synchronous: 'true', autoCreateProjects: 'true', dependencyTrackApiKey: '$DC_CREDS', projectName: 'semgrep-test', projectVersion: '1')
+        dependencyTrackPublisher(artifact: 'bom.xml', synchronous: 'true', autoCreateProjects: 'true', dependencyTrackApiKey: $DC_CREDS, projectName: 'semgrep-test', projectVersion: '1')
       }
     }
 
