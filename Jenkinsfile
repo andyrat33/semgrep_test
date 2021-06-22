@@ -41,12 +41,14 @@ pipeline {
       steps {
         dependencyCheck(odcInstallation: 'dependency-check', additionalArguments: "--scan ${env.WORKSPACE}")
         dependencyCheckPublisher(pattern: '**/dependency-check-report.xml')
+        }
       }
     stage('Dependency Track') {
-       withCredentials([string(credentialsId: 'Dependency-Track-Automation', variable: 'API_KEY')]) {
-            dependencyTrackPublisher artifact: '${WORKSPACE}/bom.xml', synchronous: true, autoCreateProjects: true, dependencyTrackApiKey: API_KEY, projectName: 'semgrep-test', projectVersion: '1'
+        steps {
+            withCredentials([string(credentialsId: 'Dependency-Track-Automation', variable: 'API_KEY')]) {
+                dependencyTrackPublisher artifact: '${WORKSPACE}/bom.xml', synchronous: true, autoCreateProjects: true, dependencyTrackApiKey: API_KEY, projectName: 'semgrep-test', projectVersion: '1'
+            }
         }
-    }
     }
   }
 }
