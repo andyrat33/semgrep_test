@@ -44,12 +44,9 @@ pipeline {
       }
     }
     stage('Dependency Track') {
-    environment {
-        DC_CREDS = credentials('Dependency-Track-Automation')
-      }
-      steps {
-        dependencyTrackPublisher(artifact: 'bom.xml', synchronous: 'true', autoCreateProjects: 'true', dependencyTrackApiKey: "$DC_CREDS", projectName: 'semgrep-test', projectVersion: '1')
-      }
+       withCredentials([string(credentialsId: 'Dependency-Track-Automation', variable: 'API_KEY')]) {
+            dependencyTrackPublisher artifact: '${WORKSPACE}/bom.xml', synchronous: true, autoCreateProjects: true, dependencyTrackApiKey: API_KEY, projectName: 'semgrep-test', projectVersion: '1'
+        }
     }
 
   }
